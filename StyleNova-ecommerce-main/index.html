@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleNova</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+</head>
+<body>
+  <!-- ------------------------------------------------------------------------------ -->
+  <!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/aspect-ratio'),
+    ],
+  }
+  ```
+-->
+<div class="bg-white">
+  <!--
+    Mobile menu
+
+    Off-canvas menu for mobile, show/hide based on off-canvas menu state.
+  -->
+  <div class="relative z-40 lg:hidden" role="dialog" aria-modal="true">
+    <!--
+      Off-canvas menu backdrop, show/hide based on off-canvas menu state.
+
+      Entering: "transition-opacity ease-linear duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "transition-opacity ease-linear duration-300"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    
+<!-- display :none; ---hidden attribute meaning -->
+    <div class="fixed inset-0 z-40 flex hidden" id="sidebar">
+      <!--
+        Off-canvas menu, show/hide based on off-canvas menu state.
+
+        Entering: "transition ease-in-out duration-300 transform"
+          From: "-translate-x-full"
+          To: "translate-x-0"
+        Leaving: "transition ease-in-out duration-300 transform"
+          From: "translate-x-0"
+          To: "-translate-x-full"
+      -->
+      <div class="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl " >
+        <div class="flex px-4 pb-2 pt-5">
+          <button  id="closemenu"type="button" class="relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Close menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Links -->
+        <div class="mt-2">
+          <div class="border-b border-gray-200">
+            <div class="-mb-px flex space-x-8 px-4" aria-orientation="horizontal" role="tablist">
+              <!-- Selected: "border-indigo-600 text-indigo-600", Not Selected: "border-transparent text-gray-900" -->
+              <button id="tabs-1-tab-1" class="border-transparent text-gray-900 flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium" aria-controls="tabs-1-panel-1" role="tab" type="button">Women</button>
+              <!-- Selected: "border-indigo-600 text-indigo-600", Not Selected: "border-transparent text-gray-900" -->
+              <button id="tabs-1-tab-2" class="border-transparent text-gray-900 flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium" aria-controls="tabs-1-panel-2" role="tab" type="button">Men</button>
+            </div>
+          </div>
+
+          <!-- 'Women' tab panel, show/hide based on tab state. -->
+          <div id="tabs-1-panel-1" class="space-y-10 px-4 pb-8 pt-10" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+            <div class="grid grid-cols-2 gap-x-4">
+              <div class="group relative text-sm">
+                <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                  <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." class="object-cover object-center">
+                </div>
+                <a href="#" class="mt-6 block font-medium text-gray-900">
+                  <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                  New Arrivals
+                </a>
+                <p aria-hidden="true" class="mt-1">Shop now</p>
+              </div>
+              <div class="group relative text-sm">
+                <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                  <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." class="object-cover object-center">
+                </div>
+                <a href="#" class="mt-6 block font-medium text-gray-900">
+                  <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                  Basic Tees
+                </a>
+                <p aria-hidden="true" class="mt-1">Shop now</p>
+              </div>
+            </div>
+            <div>
+              <p id="women-clothing-heading-mobile" class="font-medium text-gray-900">Clothing</p>
+              <ul role="list" aria-labelledby="women-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Tops</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Dresses</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Pants</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Denim</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Sweaters</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">T-Shirts</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Jackets</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Activewear</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Browse All</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p id="women-accessories-heading-mobile" class="font-medium text-gray-900">Accessories</p>
+              <ul role="list" aria-labelledby="women-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Watches</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Wallets</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Bags</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Sunglasses</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Hats</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Belts</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p id="women-brands-heading-mobile" class="font-medium text-gray-900">Brands</p>
+              <ul role="list" aria-labelledby="women-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Full Nelson</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">My Way</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Re-Arranged</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Counterfeit</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Significant Other</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 'Men' tab panel, show/hide based on tab state. -->
+          <div id="tabs-1-panel-2" class="space-y-10 px-4 pb-8 pt-10" aria-labelledby="tabs-1-tab-2" role="tabpanel" tabindex="0">
+            <div class="grid grid-cols-2 gap-x-4">
+              <div class="group relative text-sm">
+                <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                  <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." class="object-cover object-center">
+                </div>
+                <a href="#" class="mt-6 block font-medium text-gray-900">
+                  <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                  New Arrivals
+                </a>
+                <p aria-hidden="true" class="mt-1">Shop now</p>
+              </div>
+              <div class="group relative text-sm">
+                <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                  <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." class="object-cover object-center">
+                </div>
+                <a href="#" class="mt-6 block font-medium text-gray-900">
+                  <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                  Artwork Tees
+                </a>
+                <p aria-hidden="true" class="mt-1">Shop now</p>
+              </div>
+            </div>
+            <div>
+              <p id="men-clothing-heading-mobile" class="font-medium text-gray-900">Clothing</p>
+              <ul role="list" aria-labelledby="men-clothing-heading-mobile" class="mt-6 flex flex-col space-y-6">
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Tops</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Pants</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Sweaters</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">T-Shirts</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Jackets</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Activewear</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Browse All</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p id="men-accessories-heading-mobile" class="font-medium text-gray-900">Accessories</p>
+              <ul role="list" aria-labelledby="men-accessories-heading-mobile" class="mt-6 flex flex-col space-y-6">
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Watches</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Wallets</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Bags</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Sunglasses</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Hats</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Belts</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p id="men-brands-heading-mobile" class="font-medium text-gray-900">Brands</p>
+              <ul role="list" aria-labelledby="men-brands-heading-mobile" class="mt-6 flex flex-col space-y-6">
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Re-Arranged</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Counterfeit</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">Full Nelson</a>
+                </li>
+                <li class="flow-root">
+                  <a href="#" class="-m-2 block p-2 text-gray-500">My Way</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6 border-t border-gray-200 px-4 py-6">
+          <div class="flow-root">
+            <a href="#about" class="-m-2 block p-2 font-medium text-gray-900">about us</a>
+          </div>
+          <div class="flow-root">
+            <a href="#" class="-m-2 block p-2 font-medium text-gray-900">Stores</a>
+          </div>
+        </div>
+
+        <div class="space-y-6 border-t border-gray-200 px-4 py-6">
+          <div class="flow-root">
+            <a href="/public/signin.html" class="-m-2 block p-2 font-medium text-gray-900">Sign in</a>
+          </div>
+          <div class="flow-root">
+            <a href="/public/createaccount.html" class="-m-2 block p-2 font-medium text-gray-900">Create account</a>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+  <header class="relative bg-white">
+    <p class="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
+
+    <nav aria-label="Top" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="border-b border-gray-200">
+        <div class="flex h-16 items-center">
+          <!-- Mobile menu toggle, controls the 'mobileMenuOpen' state. -->
+          <button  id="openmenu"type="button" class="relative rounded-md bg-white p-2 text-gray-400 lg:hidden">
+            <span class="absolute -inset-0.5"></span>
+            <span class="sr-only">Open menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+
+          <!-- Logo -->
+          <div class="ml-4 flex lg:ml-0">
+            <a href="#">
+              <span class="sr-only">Your Company</span>
+              <img class="h-8 w-auto" src="/public/photos/SN_logo-removebg.png" alt="">
+            </a>
+          </div>
+
+          <!-- Flyout menus -->
+          <div class="hidden lg:ml-8 lg:block lg:self-stretch">
+            <div class="flex h-full space-x-8">
+              <div class="flex">
+                <div class="relative flex">
+                  
+                  <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
+                  <button type="button" id="women"class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" aria-expanded="false">Women</button>
+                </div>
+
+                <!--
+                  'Women' flyout menu, show/hide based on flyout menu state.
+
+                  Entering: "transition ease-out duration-200"
+                    From: "opacity-0"
+                    To: "opacity-100"
+                  Leaving: "transition ease-in duration-150"
+                    From: "opacity-100"
+                    To: "opacity-0"
+                -->
+                <div class="absolute inset-x-0 top-full text-sm text-gray-500 hidden" id="womencard">
+                  <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+                  <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+                  <div class="relative bg-white">
+                    <div class="mx-auto max-w-7xl px-8">
+                      <div class="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
+                        <div class="col-start-2 grid grid-cols-2 gap-x-8">
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg" alt="Models sitting back to back, wearing Basic Tee in black and bone." class="object-cover object-center">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                              New Arrivals
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg" alt="Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees." class="object-cover object-center">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                              Basic Tees
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+                        </div>
+                        <div class="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                          <div>
+                            <p id="Clothing-heading" class="font-medium text-gray-900">Clothing</p>
+                            <ul role="list" aria-labelledby="Clothing-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Tops</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Dresses</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Pants</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Denim</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Sweaters</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">T-Shirts</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Jackets</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Activewear</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Browse All</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p id="Accessories-heading" class="font-medium text-gray-900">Accessories</p>
+                            <ul role="list" aria-labelledby="Accessories-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Watches</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Wallets</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Bags</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Sunglasses</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Hats</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Belts</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p id="Brands-heading" class="font-medium text-gray-900">Brands</p>
+                            <ul role="list" aria-labelledby="Brands-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Full Nelson</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">My Way</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Re-Arranged</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Counterfeit</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Significant Other</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="relative flex">
+                  <!-- Item active: "border-indigo-600 text-indigo-600", Item inactive: "border-transparent text-gray-700 hover:text-gray-800" -->
+                  <button type="button" class="border-transparent text-gray-700 hover:text-gray-800 relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out" id="men"aria-expanded="false">Men</button>
+                </div>
+
+                <!--
+                  'Men' flyout menu, show/hide based on flyout menu state.
+
+                  Entering: "transition ease-out duration-200"
+                    From: "opacity-0"
+                    To: "opacity-100"
+                  Leaving: "transition ease-in duration-150"
+                    From: "opacity-100"
+                    To: "opacity-0"
+                -->
+                <div class="absolute inset-x-0 top-full text-sm text-gray-500 hidden" id="mencard">
+                  <!-- Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow -->
+                  <div class="absolute inset-0 top-1/2 bg-white shadow" aria-hidden="true"></div>
+
+                  <div class="relative bg-white">
+                    <div class="mx-auto max-w-7xl px-8">
+                      <div class="grid grid-cols-2 gap-x-8 gap-y-10 py-16">
+                        <div class="col-start-2 grid grid-cols-2 gap-x-8">
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg" alt="Drawstring top with elastic loop closure and textured interior padding." class="object-cover object-center">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                              New Arrivals
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+                          <div class="group relative text-base sm:text-sm">
+                            <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-100 group-hover:opacity-75">
+                              <img src="https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg" alt="Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt." class="object-cover object-center">
+                            </div>
+                            <a href="#" class="mt-6 block font-medium text-gray-900">
+                              <span class="absolute inset-0 z-10" aria-hidden="true"></span>
+                              Artwork Tees
+                            </a>
+                            <p aria-hidden="true" class="mt-1">Shop now</p>
+                          </div>
+                        </div>
+                        <div class="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                          <div>
+                            <p id="Clothing-heading" class="font-medium text-gray-900">Clothing</p>
+                            <ul role="list" aria-labelledby="Clothing-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Tops</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Pants</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Sweaters</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">T-Shirts</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Jackets</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Activewear</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Browse All</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p id="Accessories-heading" class="font-medium text-gray-900">Accessories</p>
+                            <ul role="list" aria-labelledby="Accessories-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Watches</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Wallets</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Bags</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Sunglasses</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Hats</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Belts</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <p id="Brands-heading" class="font-medium text-gray-900">Brands</p>
+                            <ul role="list" aria-labelledby="Brands-heading" class="mt-6 space-y-6 sm:mt-4 sm:space-y-4">
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Re-Arranged</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Counterfeit</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">Full Nelson</a>
+                              </li>
+                              <li class="flex">
+                                <a href="#" class="hover:text-gray-800">My Way</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a href="#about" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">About us</a>
+              <a href="#" class="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800">Stores</a>
+            </div>
+          </div>
+         <div class="w-2/5 h-full flex text-center justify-center items-center"><div class="text-blue-800 text-3xl font-semibold w-2/5 ">StyleNova</div></div>
+          <div class="ml-auto flex items-center">
+           
+            <div class="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+              <a href="/public/signin.html" class="text-sm font-medium text-gray-700 hover:text-gray-800">Sign in</a>
+              <span class="h-6 w-px bg-gray-200" aria-hidden="true"></span>
+              <a href="/public/createaccount.html" class="text-sm font-medium text-gray-700 hover:text-gray-800">Create account</a>
+            </div>
+
+          
+
+            <!-- Search -->
+            <div class="flex lg:ml-6">
+              <a href="/public/search.html" class="p-2 text-gray-400 hover:text-gray-500">
+                <span class="sr-only">Search</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Cart -->
+            <div class="ml-4 flow-root lg:ml-6">
+              <a href="/public/Checkout.html" class="group -m-2 flex items-center p-2">
+                <svg class="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+                <span class="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                <span class="sr-only">items in cart, view bag</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+</div>
+<script>
+
+ 
+  const menButton = document.getElementById('men');
+  const womenButton = document.getElementById('women');
+  const menCard = document.getElementById('mencard');
+  const womenCard = document.getElementById('womencard');
+ 
+  const openMenuButton = document.getElementById('openmenu');
+const sidebar = document.getElementById('sidebar');
+const closemenuButton=document.getElementById('closemenu')
+
+// tabs-1-tab-1 
+// tabs-1-panel-1
+const Tab1 = document.getElementById('tabs-1-tab-1');
+  const panel1 = document.getElementById('tabs-1-panel-1');
+  const tab2 = document.getElementById('tabs-1-tab-2');
+  const panel2 = document.getElementById('tabs-1-panel-2');
+
+
+openMenuButton.addEventListener('click', () => {
+sidebar.classList.toggle('hidden');
+});
+closemenuButton.addEventListener('click', () => {
+sidebar.classList.toggle('hidden');
+});
+
+
+
+  menButton.addEventListener('click', function() {
+    menCard.classList.toggle('hidden');
+    womenCard.classList.add('hidden');
+  });
+
+  womenButton.addEventListener('click', function() {
+    womenCard.classList.toggle('hidden');
+    menCard.classList.add('hidden');
+  });
+  
+  Tab1.addEventListener('click', function() {
+    
+    panel2.classList.add('hidden');
+    panel1.classList.toggle('hidden');
+  });
+
+  tab2.addEventListener('click', function() {
+    panel2.classList.toggle('hidden');
+    panel1.classList.add('hidden');
+  });
+
+  
+
+
+</script>
+  
+<!-- ------------------------------------------------------------------- -->
+<div class="h-screen mt-5 bg-white px-6 ">
+    
+  <section class="h-5/6">
+      <div class="flex flex-col h-full">
+        <div class="lg:h-1/3 bg-white px-8  py-7 flex flex-col md:h-1/2 sm:h-1/2">
+          <h1 class="  font-sans text-8xl  text-black  font-semibold pt-2">Discover Your Style</h1>
+          <div class="flex gap-5 pt-4">
+              <h3 class="  text-3xl  text-blue-700 ">Unleash your inner fashionista</h3>
+          <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text- font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Shop Now</a>
+
+          </div>
+          
+        </div>
+        <div class="lg:h-5/6 lg:flex lg:justify-end gap-5 sm:h-full sm:flex sm:justify-center  md:full md:flex md:justify-center ">
+  
+          <div class="h-full lg:w-3/12 sm:w-1/2 md:w-1/2 ">
+              <img src="./photos/Portrait1.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full  sm:h-full sm:w-full md:h-full md:w-full rounded-tr-full rounded-tl-full">
+          </div>
+          <div class="h-full lg:w-3/12 sm:w-1/2 md:w-1/2">
+              <img src="./photos/Portrait2.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full    sm:h-full sm:w-full md:h-full md:w-full">
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+</div>
+<!-- ---------------------------------------------------------------------------- -->
+<!-- 
+favourites -->
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-bold tracking-tight text-gray-900">Our Favorites</h2>
+
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailswomen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Basic Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">Black</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-02.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailswomen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Basic Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">AspenWhite</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-03.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailswomen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Basic Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">Mountains Artwork Tee</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="/public/photos/phot4.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailswomen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Artwork Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      
+
+      <!-- More products... -->
+    </div>
+  </div>
+</div>
+<!-- -------- -->
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-bold tracking-tight text-black">Customers also purchased</h2>
+
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md text-white lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailsmen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Basic Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">Black</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900 ">$35</p>
+        </div>
+      </div>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailsmen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Basic Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm ttext-gray-500">Charcoal</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailswomen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Basic Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">AspenWhite</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-100">
+          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="/public/productdetailswomen.html">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                Artwork Tee
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">Iso Dots</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">$35</p>
+        </div>
+      </div>
+      
+
+      <!-- More products... -->
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------ -->
+<section class="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.indigo.100),white)] opacity-20"></div>
+  <div class="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"></div>
+  <div class="mx-auto max-w-2xl lg:max-w-4xl">
+    <img class="mx-auto h-12" src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg" alt="">
+    <figure class="mt-10">
+      <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
+        <p>StyleNova is my go-to for all my clothing needs.The quality is exceptional, and I always receive compliments on my outfits.
+          Thank you StyleNova.
+        </p>
+      </blockquote>
+      <figcaption class="mt-10">
+        <img class="mx-auto h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+        <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+          <div class="font-semibold text-gray-900">Sarah</div>
+          <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-gray-900">
+            <circle cx="1" cy="1" r="1" />
+          </svg>
+          <div class="text-gray-600">Former employee of Amazon</div>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+<!-- -------------------------------------------------------------------------------------------------
+about us -->
+
+
+
+<div class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4" id="about">
+  <div class="flex flex-col lg:flex-row justify-between gap-8">
+      <div class="w-full lg:w-5/12 flex flex-col justify-center">
+          <h1 class="text-3xl lg:text-4xl font-bold leading-9 text-gray-800  pb-4">About Us</h1>
+          <p class="font-normal text-base leading-6 text-gray-600 ">At StyleNova , we pride ourselves on offering the best collection of T-Shirts
+            occasional wear, sports attire, and wedding wear for both men and women. Our priority is quality.We ensure that every piece is crafted
+            with the finest fabrics and the most enticing designs to keep you looking and feeling ypur best.
+          </p>
+      </div>
+      <div class="w-full lg:w-8/12">
+          <img class="w-full h-full rounded-3xl" src="./photos/burgess-milner-OYYE4g-I5ZQ-unsplash.jpg" alt="A group of People" />
+      </div>
+  </div>
+
+  
+</div>
+
+
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+  
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact Us</h2>
+  </div>
+  <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+      <div>
+        <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">First name</label>
+        <div class="mt-2.5">
+          <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div>
+        <label for="last-name" class="block text-sm font-semibold leading-6 text-gray-900">Last name</label>
+        <div class="mt-2.5">
+          <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="company" class="block text-sm font-semibold leading-6 text-gray-900">Company</label>
+        <div class="mt-2.5">
+          <input type="text" name="company" id="company" autocomplete="organization" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+        <div class="mt-2.5">
+          <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="phone-number" class="block text-sm font-semibold leading-6 text-gray-900">Phone number</label>
+        <div class="relative mt-2.5">
+          <div class="absolute inset-y-0 left-0 flex items-center">
+            <label for="country" class="sr-only">Country</label>
+            <select id="country" name="country" class="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+              <option>IN</option>
+              <option>UK</option>
+              <option>US</option>
+            </select>
+            <svg class="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <input type="tel" name="phone-number" id="phone-number" autocomplete="tel" class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">Message</label>
+        <div class="mt-2.5">
+          <textarea name="message" id="message" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+        </div>
+      </div>
+      <div class="flex gap-x-4 sm:col-span-2">
+        <div class="flex h-6 items-center">
+          <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+          <button type="button" class="bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" role="switch" aria-checked="false" aria-labelledby="switch-1-label">
+            <span class="sr-only">Agree to policies</span>
+            <!-- Enabled: "translate-x-3.5", Not Enabled: "translate-x-0" -->
+            <span aria-hidden="true" class="translate-x-0 h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"></span>
+          </button>
+        </div>
+        <label class="text-sm leading-6 text-gray-600" id="switch-1-label">
+          By selecting this, you agree to our
+          <a href="#" class="font-semibold text-indigo-600">privacy&nbsp;policy</a>.
+        </label>
+      </div>
+    </div>
+    <div class="mt-10">
+      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Let's talk</button>
+    </div>
+  </form>
+</div>
+<!-- --------------------------------------------------------------------------------------------------- -->
+<!-- faQ -->
+<div class="h-98 bg-blue-50">
+  <div class="p-5 bg-light-blue">
+    <div class="flex justify-center items-start my-2">
+      <div class="w-full sm:w-10/12 md:w-1/2 my-1">
+        <h2 class="text-xl font-semibold text-vnet-blue mb-2">FAQ - Order, Shipping, Etc.</h2>
+        <ul class="flex flex-col">
+          <li class="bg-white my-2 shadow-lg" x-data="accordion(1)">
+            <h2
+              @click="handleClick()"
+              class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+            >
+              <span>When will my order arrive?</span>
+              <svg
+                :class="handleRotate()"
+                class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+              </svg>
+            </h2>
+            <div
+              x-ref="tab"
+              :style="handleToggle()"
+              class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+            >
+              <p class="p-3 text-gray-900">
+                Shipping time is set by our delivery partners, according to the delivery method chosen by you. Additional details can be found in the order confirmation
+              </p>
+            </div>
+          </li>
+          <li class="bg-white my-2 shadow-lg" x-data="accordion(2)">
+            <h2
+              @click="handleClick()"
+              class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+            >
+              <span>How do I track my order?</span>
+              <svg
+                :class="handleRotate()"
+                class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+              </svg>
+            </h2>
+            <div
+              class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+              x-ref="tab"
+              :style="handleToggle()"
+            >
+              <p class="p-3 text-gray-900">
+                Once shipped, you’ll get a confirmation email that includes a tracking number and additional information regarding tracking your order.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white my-2 shadow-lg" x-data="accordion(3)">
+            <h2
+              @click="handleClick()"
+              class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+            >
+              <span>What’s your return policy?</span>
+              <svg
+                :class="handleRotate()"
+                class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+              </svg>
+            </h2>
+            <div
+              class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+              x-ref="tab"
+              :style="handleToggle()"
+            >
+              <p class="p-3 text-gray-900">
+                We allow the return of all items within 30 days of your original order’s date. If you’re interested in returning your items, send us an email with your order number and we’ll ship a return label.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white my-2 shadow-lg" x-data="accordion(4)">
+            <h2
+              @click="handleClick()"
+              class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+            >
+              <span>How do I make changes to an existing order?</span>
+              <svg
+                :class="handleRotate()"
+                class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+              </svg>
+            </h2>
+            <div
+              class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+              x-ref="tab"
+              :style="handleToggle()"
+            >
+              <p class="p-3 text-gray-900">
+                Changes to an existing order can be made as long as the order is still in “processing” status. Please contact our team via email and we’ll make sure to apply the needed changes. If your order has already been shipped, we cannot apply any changes to it. If you are unhappy with your order when it arrives, please contact us for any changes you may require.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white my-2 shadow-lg" x-data="accordion(5)">
+            <h2
+              @click="handleClick()"
+              class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+            >
+              <span>What shipping options do you have?</span>
+              <svg
+                :class="handleRotate()"
+                class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+              </svg>
+            </h2>
+            <div
+              class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+              x-ref="tab"
+              :style="handleToggle()"
+            >
+              <p class="p-3 text-gray-900">
+                For USA domestic orders we offer FedEx and USPS shipping.
+              </p>
+            </div>
+          </li>
+          <li class="bg-white my-2 shadow-lg" x-data="accordion(6)">
+            <h2
+              @click="handleClick()"
+              class="flex flex-row justify-between items-center font-semibold p-3 cursor-pointer"
+            >
+              <span>What payment methods do you accept?</span>
+              <svg
+                :class="handleRotate()"
+                class="fill-current text-purple-700 h-6 w-6 transform transition-transform duration-500"
+                viewBox="0 0 20 20"
+              >
+                <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
+              </svg>
+            </h2>
+            <div
+              class="border-l-2 border-purple-600 overflow-hidden max-h-0 duration-500 transition-all"
+              x-ref="tab"
+              :style="handleToggle()"
+            >
+              <p class="p-3 text-gray-900">
+                Any method of payments acceptable by you. For example: We accept MasterCard, Visa, American Express, PayPal, JCB Discover, Gift Cards, etc.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('accordion', {
+      tab: 0
+    });
+    
+    Alpine.data('accordion', (idx) => ({
+      init() {
+        this.idx = idx;
+      },
+      idx: -1,
+      handleClick() {
+        this.$store.accordion.tab = this.$store.accordion.tab === this.idx ? 0 : this.idx;
+      },
+      handleRotate() {
+        return this.$store.accordion.tab === this.idx ? 'rotate-180' : '';
+      },
+      handleToggle() {
+        return this.$store.accordion.tab === this.idx ? `max-height: ${this.$refs.tab.scrollHeight}px` : '';
+      }
+    }));
+  })
+</script>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<footer class="px-4 divide-y dark:bg-gray-100 dark:text-gray-800">
+	<div class="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+		<div class="lg:w-1/3">
+			<a rel="noopener noreferrer" href="#" class="flex justify-center space-x-3 lg:justify-start">
+				<div class="flex items-center justify-center w-12 h-12 rounded-full ">
+          <img class="h-8 w-auto" src="/public/photos/SN_logo-removebg.png" alt="">
+
+				</div>
+				<span class="self-center text-2xl font-semibold text-blue-800 ">StyleNova</span>
+			</a>
+		</div>
+		<div class="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+			<div class="space-y-3">
+				<h3 class="tracking-wide uppercase dark:text-gray-900">Product</h3>
+				<ul class="space-y-1">
+					<li>
+						<a rel="noopener noreferrer" href="#">Features</a>
+					</li>
+					<li>
+						<a rel="noopener noreferrer" href="#">Integrations</a>
+					</li>
+					<li>
+						<a rel="noopener noreferrer" href="#">Pricing</a>
+					</li>
+					<li>
+						<a rel="noopener noreferrer" href="#">FAQ</a>
+					</li>
+				</ul>
+			</div>
+			<div class="space-y-3">
+				<h3 class="tracking-wide uppercase dark:text-gray-900">Company</h3>
+				<ul class="space-y-1">
+					<li>
+						<a rel="noopener noreferrer" href="#">Privacy</a>
+					</li>
+					<li>
+						<a rel="noopener noreferrer" href="#">Terms of Service</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="space-y-3">
+				<div class="uppercase dark:text-gray-900">Social media</div>
+				<div class="flex justify-start space-x-3">
+					<a rel="noopener noreferrer" href="#" title="Facebook" class="flex items-center p-1">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" class="w-5 h-5 fill-current">
+							<path d="M32 16c0-8.839-7.167-16-16-16-8.839 0-16 7.161-16 16 0 7.984 5.849 14.604 13.5 15.803v-11.177h-4.063v-4.625h4.063v-3.527c0-4.009 2.385-6.223 6.041-6.223 1.751 0 3.584 0.312 3.584 0.312v3.937h-2.021c-1.984 0-2.604 1.235-2.604 2.5v3h4.437l-0.713 4.625h-3.724v11.177c7.645-1.199 13.5-7.819 13.5-15.803z"></path>
+						</svg>
+					</a>
+					<a rel="noopener noreferrer" href="#" title="Twitter" class="flex items-center p-1">
+						<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-current">
+							<path d="M23.954 4.569a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z"></path>
+						</svg>
+					</a>
+					<a rel="noopener noreferrer" href="#" title="Instagram" class="flex items-center p-1">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="w-5 h-5 fill-current">
+							<path d="M16 0c-4.349 0-4.891 0.021-6.593 0.093-1.709 0.084-2.865 0.349-3.885 0.745-1.052 0.412-1.948 0.959-2.833 1.849-0.891 0.885-1.443 1.781-1.849 2.833-0.396 1.020-0.661 2.176-0.745 3.885-0.077 1.703-0.093 2.244-0.093 6.593s0.021 4.891 0.093 6.593c0.084 1.704 0.349 2.865 0.745 3.885 0.412 1.052 0.959 1.948 1.849 2.833 0.885 0.891 1.781 1.443 2.833 1.849 1.020 0.391 2.181 0.661 3.885 0.745 1.703 0.077 2.244 0.093 6.593 0.093s4.891-0.021 6.593-0.093c1.704-0.084 2.865-0.355 3.885-0.745 1.052-0.412 1.948-0.959 2.833-1.849 0.891-0.885 1.443-1.776 1.849-2.833 0.391-1.020 0.661-2.181 0.745-3.885 0.077-1.703 0.093-2.244 0.093-6.593s-0.021-4.891-0.093-6.593c-0.084-1.704-0.355-2.871-0.745-3.885-0.412-1.052-0.959-1.948-1.849-2.833-0.885-0.891-1.776-1.443-2.833-1.849-1.020-0.396-2.181-0.661-3.885-0.745-1.703-0.077-2.244-0.093-6.593-0.093zM16 2.88c4.271 0 4.781 0.021 6.469 0.093 1.557 0.073 2.405 0.333 2.968 0.553 0.751 0.291 1.276 0.635 1.844 1.197 0.557 0.557 0.901 1.088 1.192 1.839 0.22 0.563 0.48 1.411 0.553 2.968 0.072 1.688 0.093 2.199 0.093 6.469s-0.021 4.781-0.099 6.469c-0.084 1.557-0.344 2.405-0.563 2.968-0.303 0.751-0.641 1.276-1.199 1.844-0.563 0.557-1.099 0.901-1.844 1.192-0.556 0.22-1.416 0.48-2.979 0.553-1.697 0.072-2.197 0.093-6.479 0.093s-4.781-0.021-6.48-0.099c-1.557-0.084-2.416-0.344-2.979-0.563-0.76-0.303-1.281-0.641-1.839-1.199-0.563-0.563-0.921-1.099-1.197-1.844-0.224-0.556-0.48-1.416-0.563-2.979-0.057-1.677-0.084-2.197-0.084-6.459 0-4.26 0.027-4.781 0.084-6.479 0.083-1.563 0.339-2.421 0.563-2.979 0.276-0.761 0.635-1.281 1.197-1.844 0.557-0.557 1.079-0.917 1.839-1.199 0.563-0.219 1.401-0.479 2.964-0.557 1.697-0.061 2.197-0.083 6.473-0.083zM16 7.787c-4.541 0-8.213 3.677-8.213 8.213 0 4.541 3.677 8.213 8.213 8.213 4.541 0 8.213-3.677 8.213-8.213 0-4.541-3.677-8.213-8.213-8.213zM16 21.333c-2.948 0-5.333-2.385-5.333-5.333s2.385-5.333 5.333-5.333c2.948 0 5.333 2.385 5.333 5.333s-2.385 5.333-5.333 5.333zM26.464 7.459c0 1.063-0.865 1.921-1.923 1.921-1.063 0-1.921-0.859-1.921-1.921 0-1.057 0.864-1.917 1.921-1.917s1.923 0.86 1.923 1.917z"></path>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="py-6 text-sm text-center dark:text-gray-600"> © 2024 StyleNova Co. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

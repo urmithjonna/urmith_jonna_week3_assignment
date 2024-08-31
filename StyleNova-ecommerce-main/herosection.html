@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>herosection</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <!-- For very smaller screens we add customized breakpoints -->
+    <script>
+      const defaultTheme = require('tailwindcss/defaultTheme')
+
+module.exports = {
+  theme: {
+    screens: {
+      'xs': '350px',
+      
+    },
+  },
+  plugins: [],
+}
+    </script>
+</head>
+<body>
+   
+   
+    <div class="h-screen mt-24 bg-white px-6 ">
+    
+        <section class="h-5/6">
+            <div class="flex flex-col h-full">
+              <div class="lg:h-1/3 bg-white px-8  py-7 flex flex-col md:h-1/2 sm:h-1/2 xs:flex xs:justify-center">
+                <h1 class="  font-sans text-8xl  text-black  font-semibold pt-2">Discover Your Style</h1>
+                <div class="flex gap-5 pt-4">
+                    <h3 class="  text-3xl  text-black ">shop our lastest collection</h3>
+                <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text- font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 xs:w-1/2">Get started</a>
+
+                </div>
+                
+              </div>
+              <div class="lg:h-5/6 lg:flex lg:justify-end gap-5 sm:h-full sm:flex sm:justify-center  md:full md:flex md:justify-center xs:flex xs :justify-center ">
+        
+                <div class="h-full lg:w-3/12 sm:w-1/2 md:w-1/2 xs:w-1/2 ">
+                    <img src="./photos/Portrait1.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full  sm:h-full sm:w-full md:h-full md:w-full rounded-tr-full rounded-tl-full">
+                </div>
+                <div class="h-full lg:w-3/12 sm:w-1/2 md:w-1/2 xs:w-1/2 ">
+                    <img src="./photos/Portrait2.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full    sm:h-full sm:w-full md:h-full md:w-full">
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+    </div>
+  
+    
+    
+</body>
+</html>
